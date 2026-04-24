@@ -6,64 +6,91 @@
 <title>Trufi - Ruta Más Corta</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#0a0f1a;color:#e6eaf0;font-family:'Segoe UI',system-ui,sans-serif;overflow:hidden;height:100vh;}
+:root{
+  --trufi-bg:#0a0f1a;
+  --trufi-surface:#0b1422;
+  --trufi-card:#111827;
+  --trufi-border:#1e3a5f;
+  --trufi-border-soft:#1a2d45;
+  --trufi-text:#e6eaf0;
+  --trufi-muted:#5a7a9a;
+  --trufi-primary:#fbc400;
+  --trufi-primary-dark:#f9a825;
+  --trufi-accent:#4fc3f7;
+  --trufi-success:#4caf50;
+  --trufi-warning:#ff9800;
+  --trufi-danger:#ff5252;
+}
+body{background:var(--trufi-bg);color:var(--trufi-text);font-family:'Segoe UI',system-ui,sans-serif;overflow:hidden;height:100vh;}
 #app{display:flex;flex-direction:column;height:100vh;}
 
 /* LOGIN */
-#login-screen{display:flex;align-items:center;justify-content:center;height:100vh;background:radial-gradient(ellipse at 50% 40%,#0f1e35 0%,#0a0f1a 70%);}
-.login-card{background:#111827;border:1px solid #1e3a5f;border-radius:18px;padding:44px 40px;width:400px;text-align:center;}
+#login-screen{display:flex;align-items:center;justify-content:center;height:100vh;background:radial-gradient(ellipse at 50% 40%,#0f1e35 0%,var(--trufi-bg) 70%);}
+.login-card{background:var(--trufi-card);border:1px solid var(--trufi-border);border-radius:18px;padding:44px 40px;width:400px;text-align:center;}
 .login-logo{width:100px;height:100px;object-fit:contain;margin:0 auto 16px;display:block;border-radius:12px;}
-.login-card h1{font-size:32px;color:#fbc400;margin-bottom:4px;letter-spacing:4px;font-weight:900;}
-.login-sub{color:#5a7a9a;font-size:13px;margin-bottom:28px;}
-.login-input{width:100%;background:#0a0f1a;border:1px solid #1e3a5f;border-radius:8px;padding:12px 16px;color:#e6eaf0;font-size:15px;margin-bottom:12px;outline:none;transition:border .2s;}
-.login-input:focus{border-color:#fbc400;}
-.login-btn{width:100%;background:#fbc400;color:#0a0f1a;border:none;border-radius:8px;padding:13px;font-size:16px;font-weight:900;cursor:pointer;letter-spacing:1px;margin-bottom:10px;transition:opacity .2s;}
+.login-card h1{font-size:32px;color:var(--trufi-primary);margin-bottom:4px;letter-spacing:4px;font-weight:900;}
+.login-sub{color:var(--trufi-muted);font-size:13px;margin-bottom:28px;}
+.login-input{width:100%;background:var(--trufi-bg);border:1px solid var(--trufi-border);border-radius:8px;padding:12px 16px;color:var(--trufi-text);font-size:15px;margin-bottom:12px;outline:none;transition:border .2s;}
+.login-input:focus{border-color:var(--trufi-primary);}
+.login-btn{width:100%;background:var(--trufi-primary);color:var(--trufi-bg);border:none;border-radius:8px;padding:13px;font-size:16px;font-weight:900;cursor:pointer;letter-spacing:1px;margin-bottom:10px;transition:opacity .2s;}
 .login-btn:hover{opacity:.88;}
 .login-err{color:#ff6b6b;font-size:13px;margin-top:8px;min-height:18px;}
 .saved-players{margin-top:16px;text-align:left;}
-.saved-players h3{font-size:11px;color:#5a7a9a;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
-.saved-player-item{display:flex;align-items:center;justify-content:space-between;background:#0a0f1a;border:1px solid #1e3a5f;border-radius:8px;padding:8px 12px;margin-bottom:6px;cursor:pointer;transition:border .2s;}
-.saved-player-item:hover{border-color:#fbc400;}
+.saved-players h3{font-size:11px;color:var(--trufi-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}
+.saved-player-item{display:flex;align-items:center;justify-content:space-between;background:var(--trufi-bg);border:1px solid var(--trufi-border);border-radius:8px;padding:8px 12px;margin-bottom:6px;cursor:pointer;transition:border .2s;}
+.saved-player-item:hover{border-color:var(--trufi-primary);}
 .sp-info{display:flex;flex-direction:column;flex:1;}
 .sp-name{font-size:14px;font-weight:700;color:#e6eaf0;}
-.sp-phone{font-size:11px;color:#5a7a9a;}
-.sp-score{font-size:13px;color:#fbc400;font-weight:700;margin:0 8px;}
+.sp-phone{font-size:11px;color:var(--trufi-muted);}
+.sp-score{font-size:13px;color:var(--trufi-primary);font-weight:700;margin:0 8px;}
 .sp-del{background:none;border:none;color:#ff6b6b;cursor:pointer;font-size:15px;padding:0 4px;opacity:.6;}
 .sp-del:hover{opacity:1;}
 
 /* GAME */
 #game-screen{display:none;flex-direction:column;height:100vh;}
-#topbar{background:#0b1422;border-bottom:1px solid #1a2d45;padding:7px 16px;display:flex;align-items:center;gap:14px;flex-shrink:0;}
+#topbar{background:var(--trufi-surface);border-bottom:1px solid var(--trufi-border-soft);padding:7px 16px;display:flex;align-items:center;gap:14px;flex-shrink:0;}
 #topbar-logo{height:34px;object-fit:contain;border-radius:6px;}
-#level-label{font-size:13px;color:#fbc400;font-weight:800;letter-spacing:1px;}
+#level-label{font-size:13px;color:var(--trufi-primary);font-weight:800;letter-spacing:1px;}
 .top-info{display:flex;gap:10px;margin-left:auto;align-items:center;}
-.top-badge{background:#111827;border:1px solid #1e3a5f;border-radius:6px;padding:3px 10px;font-size:12px;white-space:nowrap;}
-.top-badge span{color:#fbc400;font-weight:700;}
+.top-badge{background:var(--trufi-card);border:1px solid var(--trufi-border);border-radius:6px;padding:3px 10px;font-size:12px;white-space:nowrap;}
+.top-badge span{color:var(--trufi-primary);font-weight:700;}
 
 /* TIMER — big and prominent */
-#timer-wrap{display:flex;align-items:center;gap:8px;background:#111827;border:2px solid #1e3a5f;border-radius:8px;padding:4px 14px;}
-#timer-label{font-size:11px;color:#5a7a9a;text-transform:uppercase;letter-spacing:1px;}
-#timer-display{font-size:26px;font-weight:900;color:#4fc3f7;min-width:54px;text-align:right;transition:color .3s;}
-#timer-display.warn{color:#ff9800;}
-#timer-display.danger{color:#ff5252;animation:tpulse .4s infinite;}
+#timer-wrap{display:flex;align-items:center;gap:8px;background:var(--trufi-card);border:2px solid var(--trufi-border);border-radius:8px;padding:4px 14px;}
+#timer-label{font-size:11px;color:var(--trufi-muted);text-transform:uppercase;letter-spacing:1px;}
+#timer-display{font-size:26px;font-weight:900;color:var(--trufi-accent);min-width:54px;text-align:right;transition:color .3s;}
+#timer-display.warn{color:var(--trufi-warning);}
+#timer-display.danger{color:var(--trufi-danger);animation:tpulse .4s infinite;}
 @keyframes tpulse{0%,100%{opacity:1;}50%{opacity:.3;}}
 
 /* TIMEOUT OVERLAY */
 #timeout-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:300;align-items:center;justify-content:center;flex-direction:column;gap:20px;}
-.to-box{background:#111827;border:2px solid #ff5252;border-radius:20px;padding:40px 50px;text-align:center;max-width:500px;}
-.to-title{font-size:36px;font-weight:900;color:#ff5252;margin-bottom:8px;letter-spacing:2px;}
+.to-box{background:var(--trufi-card);border:2px solid var(--trufi-danger);border-radius:20px;padding:40px 50px;text-align:center;max-width:500px;}
+.to-title{font-size:36px;font-weight:900;color:var(--trufi-danger);margin-bottom:8px;letter-spacing:2px;}
 .to-sub{font-size:14px;color:#8899aa;margin-bottom:24px;}
 .to-optimal{background:#0a1f0a;border:1px solid #2a5a2a;border-radius:10px;padding:14px 20px;margin-bottom:20px;}
-.to-optimal-title{font-size:11px;color:#4caf50;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+.to-optimal-title{font-size:11px;color:var(--trufi-success);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
 .to-optimal-route{font-size:16px;color:#81c784;font-weight:700;line-height:1.8;word-break:break-all;}
-.to-optimal-dist{font-size:22px;color:#4caf50;font-weight:900;margin-top:6px;}
-.to-btn{background:#fbc400;color:#0a0f1a;border:none;border-radius:10px;padding:13px 30px;font-size:16px;font-weight:900;cursor:pointer;margin:4px;}
+.to-optimal-dist{font-size:22px;color:var(--trufi-success);font-weight:900;margin-top:6px;}
+.to-btn{background:var(--trufi-primary);color:var(--trufi-bg);border:none;border-radius:10px;padding:13px 30px;font-size:16px;font-weight:900;cursor:pointer;margin:4px;}
 .to-btn:hover{opacity:.88;}
-.to-btn-sec{background:#1e3a5f;color:#c0d8f0;border:1px solid #2a4a7a;border-radius:10px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;margin:4px;}
+.to-btn-sec{background:var(--trufi-border);color:#c0d8f0;border:1px solid #2a4a7a;border-radius:10px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;margin:4px;}
 .to-btn-sec:hover{background:#243d6e;}
 
 #main-area{display:flex;flex:1;overflow:hidden;}
-#map-container{flex:1;position:relative;overflow:hidden;background:#0a0f1a;}
+#map-container{
+  flex:1;
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(195,230,175,.45) 0 10%, transparent 11%),
+    radial-gradient(circle at 75% 70%, rgba(188,224,170,.42) 0 12%, transparent 13%),
+    radial-gradient(circle at 42% 82%, rgba(210,236,195,.38) 0 8%, transparent 9%),
+    linear-gradient(115deg, rgba(174,219,242,.30) 0%, rgba(174,219,242,.08) 34%, transparent 36%),
+    repeating-linear-gradient(30deg, rgba(255,255,255,.70) 0 2px, transparent 2px 54px),
+    repeating-linear-gradient(-58deg, rgba(255,255,255,.55) 0 1px, transparent 1px 46px),
+    linear-gradient(180deg, #f2efe9 0%, #ece8df 100%);
+}
 #map-canvas{position:absolute;top:0;left:0;}
 
 /* HOVER CURSOR: show pointer over nodes */
@@ -75,54 +102,55 @@ body{background:#0a0f1a;color:#e6eaf0;font-family:'Segoe UI',system-ui,sans-seri
 #trufi-marker img{width:100%;height:100%;object-fit:contain;border-radius:8px;}
 
 /* PANEL */
-#panel{width:265px;background:#0b1422;border-left:1px solid #1a2d45;display:flex;flex-direction:column;padding:10px;gap:7px;overflow-y:auto;flex-shrink:0;}
-.ps{background:#111827;border:1px solid #1a2d45;border-radius:8px;padding:10px 11px;}
+#panel{width:265px;background:var(--trufi-surface);border-left:1px solid var(--trufi-border-soft);display:flex;flex-direction:column;padding:10px;gap:7px;overflow-y:auto;flex-shrink:0;}
+.ps{background:var(--trufi-card);border:1px solid var(--trufi-border-soft);border-radius:8px;padding:10px 11px;}
 .pt{font-size:10px;color:#4a6a8a;text-transform:uppercase;letter-spacing:1.3px;margin-bottom:6px;font-weight:700;}
 .panel-route{font-size:12px;color:#b0c4d8;line-height:2;word-break:break-all;}
 .pd{font-size:14px;font-weight:700;margin-bottom:3px;}
-.pd-p{color:#4fc3f7;}.pd-o{color:#4caf50;}
+.pd-p{color:var(--trufi-accent);}.pd-o{color:var(--trufi-success);}
 
 .btn{width:100%;border:none;border-radius:8px;padding:10px;font-size:12px;font-weight:700;cursor:pointer;letter-spacing:.3px;transition:transform .1s,opacity .2s;}
 .btn:active{transform:scale(.97);}
-.btn-yellow{background:#fbc400;color:#0a0f1a;}
+.btn-yellow{background:var(--trufi-primary);color:var(--trufi-bg);}
 .btn-yellow:hover{opacity:.88;}
 .btn-dark{background:#1a2d45;color:#b0c4d8;border:1px solid #243d57;}
 .btn-dark:hover{background:#1e3550;}
 .btn-purple{background:#2a1a4a;color:#c084fc;border:1px solid #4a2a8a;}
 .btn-purple:hover{background:#321d58;}
-.btn-save{background:#0f2a3a;color:#4fc3f7;border:1px solid #1a4a6a;}
+.btn-save{background:#0f2a3a;color:var(--trufi-accent);border:1px solid #1a4a6a;}
 .btn-save:hover{background:#133345;}
 
 .diff-btns{display:flex;gap:5px;}
-.diff-btn{flex:1;padding:6px 4px;font-size:11px;font-weight:700;border-radius:6px;border:1px solid #1e3a5f;background:#111827;color:#5a7a9a;cursor:pointer;transition:all .2s;}
-.diff-btn.active{background:#fbc400;color:#0a0f1a;border-color:#fbc400;}
+.diff-btn{flex:1;padding:6px 4px;font-size:11px;font-weight:700;border-radius:6px;border:1px solid var(--trufi-border);background:var(--trufi-card);color:var(--trufi-muted);cursor:pointer;transition:all .2s;}
+.diff-btn.active{background:var(--trufi-primary);color:var(--trufi-bg);border-color:var(--trufi-primary);}
 
 #msg-box{padding:7px 10px;border-radius:6px;font-size:11px;font-weight:600;text-align:center;min-height:34px;display:flex;align-items:center;justify-content:center;line-height:1.4;}
-.msg-info{background:#0f2a3a;color:#4fc3f7;border:1px solid #1a4a6a;}
-.msg-success{background:#0f2a0f;color:#4caf50;border:1px solid #1a4a1a;}
+.msg-info{background:#0f2a3a;color:var(--trufi-accent);border:1px solid #1a4a6a;}
+.msg-success{background:#0f2a0f;color:var(--trufi-success);border:1px solid #1a4a1a;}
 .msg-error{background:#2a0f0f;color:#ff6b6b;border:1px solid #4a1a1a;}
-.msg-warn{background:#2a1f00;color:#fbc400;border:1px solid #4a3800;}
+.msg-warn{background:#2a1f00;color:var(--trufi-primary);border:1px solid #4a3800;}
 
 .legend{display:flex;flex-wrap:wrap;gap:5px;}
 .leg{display:flex;align-items:center;gap:4px;font-size:10px;color:#7a9ab8;}
 .leg-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
 
-/* STICKER */
-#sticker-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:200;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;}
-#sticker-overlay img{width:300px;height:300px;object-fit:contain;animation:popIn .4s cubic-bezier(.34,1.56,.64,1);}
+/* RESULT POPUP */
+#sticker-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.58);z-index:200;align-items:center;justify-content:center;flex-direction:column;cursor:pointer;}
+.route-popup-card{background:#fff;border-radius:18px;padding:14px 14px 10px;box-shadow:0 18px 42px rgba(0,0,0,.28);border:3px solid #f1f1f1;animation:popIn .35s cubic-bezier(.34,1.56,.64,1);}
+#sticker-overlay img{width:min(74vw,420px);height:auto;max-height:68vh;object-fit:contain;display:block;}
 @keyframes popIn{0%{transform:scale(.3);opacity:0;}100%{transform:scale(1);opacity:1;}}
-.sticker-hint{color:#5a7a9a;font-size:12px;margin-top:14px;}
+.sticker-hint{color:#495466;font-size:12px;margin-top:10px;text-align:center;font-weight:700;}
 
-#toast{position:fixed;top:54px;right:275px;background:#fbc400;color:#0a0f1a;padding:9px 18px;border-radius:8px;font-weight:800;font-size:15px;display:none;z-index:50;animation:slideIn .3s;}
+#toast{position:fixed;top:54px;right:275px;background:var(--trufi-primary);color:var(--trufi-bg);padding:9px 18px;border-radius:8px;font-weight:800;font-size:15px;display:none;z-index:50;animation:slideIn .3s;}
 @keyframes slideIn{from{transform:translateX(40px);opacity:0;}to{transform:translateX(0);opacity:1;}}
 
-#lb-panel{display:none;position:fixed;bottom:54px;right:275px;background:#0b1422;border:1px solid #1e3a5f;border-radius:10px;padding:14px;width:285px;z-index:40;max-height:300px;overflow-y:auto;}
-#lb-panel h3{color:#fbc400;font-size:13px;margin-bottom:10px;}
+#lb-panel{display:none;position:fixed;bottom:54px;right:275px;background:var(--trufi-surface);border:1px solid var(--trufi-border);border-radius:10px;padding:14px;width:285px;z-index:40;max-height:300px;overflow-y:auto;}
+#lb-panel h3{color:var(--trufi-primary);font-size:13px;margin-bottom:10px;}
 .lb-row{display:flex;align-items:center;gap:6px;font-size:11px;padding:5px 0;border-bottom:1px solid #1a2d45;}
-.lb-rank{color:#fbc400;font-weight:800;width:18px;flex-shrink:0;}
+.lb-rank{color:var(--trufi-primary);font-weight:800;width:18px;flex-shrink:0;}
 .lb-name{flex:1;color:#e6eaf0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.lb-meta{color:#5a7a9a;font-size:10px;flex-shrink:0;}
-.lb-score{color:#4fc3f7;font-weight:700;flex-shrink:0;}
+.lb-meta{color:var(--trufi-muted);font-size:10px;flex-shrink:0;}
+.lb-score{color:var(--trufi-accent);font-weight:700;flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -180,13 +208,13 @@ body{background:#0a0f1a;color:#e6eaf0;font-family:'Segoe UI',system-ui,sans-seri
       <div class="ps">
         <div class="pt">Leyenda</div>
         <div class="legend">
-          <div class="leg"><div class="leg-dot" style="background:#4caf50;border:2px solid #81c784;"></div>Inicio</div>
-          <div class="leg"><div class="leg-dot" style="background:#f9a825;border:2px solid #fbc400;"></div>Final</div>
+          <div class="leg"><div class="leg-dot" style="background:var(--trufi-success);border:2px solid #81c784;"></div>Inicio</div>
+          <div class="leg"><div class="leg-dot" style="background:var(--trufi-primary-dark);border:2px solid var(--trufi-primary);"></div>Final</div>
           <div class="leg"><div class="leg-dot" style="background:#1565c0;border:2px solid #2196f3;"></div>Tu ruta</div>
-          <div class="leg"><div class="leg-dot" style="background:#1b5e20;border:2px solid #4caf50;"></div>Óptima</div>
+          <div class="leg"><div class="leg-dot" style="background:#1b5e20;border:2px solid var(--trufi-success);"></div>Óptima</div>
           <div class="leg" style="width:100%;margin-top:2px;">
-            <span style="color:#4fc3f7;font-size:13px;margin-right:3px;">⟷</span>Bidireccional &nbsp;
-            <span style="color:#ff9800;font-size:13px;margin-right:3px;">→</span>Un sentido
+            <span style="color:var(--trufi-accent);font-size:13px;margin-right:3px;">⟷</span>Bidireccional &nbsp;
+            <span style="color:var(--trufi-warning);font-size:13px;margin-right:3px;">→</span>Un sentido
           </div>
         </div>
       </div>
@@ -211,11 +239,14 @@ body{background:#0a0f1a;color:#e6eaf0;font-family:'Segoe UI',system-ui,sans-seri
       <button class="btn btn-yellow" onclick="confirmRoute()">✓ Confirmar Ruta</button>
       <button class="btn btn-dark" onclick="newRound()">↺ Nueva Ruta</button>
       <button class="btn btn-save" onclick="saveCurrentPlayer()">💾 Guardar Jugador</button>
+      <button class="btn btn-dark" style="font-size:11px;" onclick="exportPlayersJSON()">⬇ Exportar JSON</button>
+      <button class="btn btn-dark" style="font-size:11px;" onclick="triggerImportPlayers()">⬆ Importar JSON</button>
       <button class="btn btn-dark" style="font-size:11px;" onclick="toggleLB()">🏆 Tabla de Puntajes</button>
       <button class="btn btn-dark" style="font-size:11px;color:#ff9898;" onclick="backToLogin()">← Cambiar Jugador</button>
     </div>
   </div>
 </div>
+<input id="players-json-file" type="file" accept="application/json,.json" style="display:none;" />
 
 <!-- TIMEOUT OVERLAY -->
 <div id="timeout-overlay">
@@ -236,8 +267,10 @@ body{background:#0a0f1a;color:#e6eaf0;font-family:'Segoe UI',system-ui,sans-seri
 
 <!-- STICKER -->
 <div id="sticker-overlay" onclick="hideStickerOverlay()">
-  <img id="sticker-img" src="" alt="">
-  <div class="sticker-hint">Toca para continuar</div>
+  <div class="route-popup-card">
+    <img id="sticker-img" src="" alt="Ruta encontrada">
+    <div class="sticker-hint">Toca para continuar</div>
+  </div>
 </div>
 
 <div id="toast"></div>
@@ -251,10 +284,22 @@ const S2_SRC   = "data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BS
 document.getElementById('login-logo-img').src = LOGO_SRC;
 document.getElementById('topbar-logo').src     = LOGO_SRC;
 document.getElementById('trufi-img').src        = LOGO_SRC;
+const ROUTE_FOUND_SRC = "rutaencontrada.png";
 
 // ── STORAGE ─────────────────────────────────────────────────
 function loadPlayers(){ return JSON.parse(localStorage.getItem('trufi_v3')||'[]'); }
-function savePlayers(p){ localStorage.setItem('trufi_v3', JSON.stringify(p)); }
+function savePlayers(p){
+  localStorage.setItem('trufi_v3', JSON.stringify(p));
+  localStorage.setItem('trufi_v3_cache_json', JSON.stringify(playersCachePayload(p)));
+}
+function playersCachePayload(players){
+  return {
+    version:1,
+    exportedAt:new Date().toISOString(),
+    total:players.length,
+    players
+  };
+}
 function upsertPlayer(name,phone,score,games,maxLvl){
   let r=loadPlayers();
   const i=r.findIndex(x=>x.phone===phone);
@@ -353,13 +398,104 @@ function buildGraph3(){
   ];
   return {nodes,edges,start:'A',end:'DD'};
 }
-function getGraphForLevel(l){return [null,buildGraph1(),buildGraph2(),buildGraph3()][l];}
+const levelProfiles={};
+function cloneGraph(g){
+  return {
+    nodes:g.nodes.map(n=>({...n})),
+    edges:g.edges.map(e=>[e[0],e[1],e[2],e[3]||'bi']),
+    start:g.start,
+    end:g.end
+  };
+}
+function computeLevelProfile(base){
+  const res=dijkstra(base.nodes,base.edges,base.start,base.end);
+  return {
+    baseCost:res.cost,
+    baseHops:Math.max(1,res.path.length-1)
+  };
+}
+function getLevelProfile(level,base){
+  if(!levelProfiles[level])levelProfiles[level]=computeLevelProfile(base);
+  return levelProfiles[level];
+}
+function clamp01(v){return Math.max(0.04,Math.min(0.96,v));}
+function jitterNodes(nodes,amount){
+  const moved=nodes.map(n=>({
+    ...n,
+    x:clamp01(n.x+((Math.random()*2-1)*amount)),
+    y:clamp01(n.y+((Math.random()*2-1)*amount))
+  }));
+  // Keep minimum separation to avoid overlapping labels/nodes.
+  for(let i=0;i<moved.length;i++){
+    for(let j=i+1;j<moved.length;j++){
+      const a=moved[i],b=moved[j];
+      const dx=b.x-a.x,dy=b.y-a.y;
+      const d=Math.hypot(dx,dy);
+      if(d>0&&d<0.035){
+        const push=(0.035-d)/2;
+        const ux=dx/d,uy=dy/d;
+        a.x=clamp01(a.x-ux*push); a.y=clamp01(a.y-uy*push);
+        b.x=clamp01(b.x+ux*push); b.y=clamp01(b.y+uy*push);
+      }
+    }
+  }
+  return moved;
+}
+function mutateEdges(edges,minW,maxW){
+  const next=edges.map(([u,v,w,t])=>{
+    const delta=Math.floor(Math.random()*5)-2; // -2..+2
+    return [u,v,Math.max(minW,Math.min(maxW,w+delta)),t];
+  });
+  const tweakCount=Math.max(3,Math.floor(next.length*0.14));
+  for(let i=0;i<tweakCount;i++){
+    const idx=Math.floor(Math.random()*next.length);
+    const [u,v,w,t]=next[idx];
+    const swing=Math.random()<0.5?-3:3;
+    next[idx]=[u,v,Math.max(minW,Math.min(maxW,w+swing)),t];
+  }
+  return next;
+}
+function isDifficultySimilar(res,profile,level){
+  if(!res.path.length||res.cost===Infinity)return false;
+  const costToleranceByLevel={1:0.22,2:0.18,3:0.15};
+  const hopToleranceByLevel={1:3,2:3,3:4};
+  const tol=costToleranceByLevel[level]||0.18;
+  const hopTol=hopToleranceByLevel[level]||3;
+  const min=profile.baseCost*(1-tol),max=profile.baseCost*(1+tol);
+  const hops=res.path.length-1;
+  return res.cost>=min&&res.cost<=max&&Math.abs(hops-profile.baseHops)<=hopTol;
+}
+function varyGraphSimilar(base){
+  const clone=cloneGraph(base);
+  const levelNodeCount=clone.nodes.length;
+  const jitter=levelNodeCount<=20?0.016:levelNodeCount<=25?0.013:0.011;
+  clone.nodes=jitterNodes(clone.nodes,jitter);
+  clone.edges=mutateEdges(clone.edges,2,12);
+  return clone;
+}
+function getGraphForLevel(l){
+  const builders=[null,buildGraph1,buildGraph2,buildGraph3];
+  const b=builders[l];
+  const base=b?b():buildGraph1();
+  const profile=getLevelProfile(l,base);
+  // Keep fixed start/end per level, vary nodes+weights with similar difficulty.
+  for(let i=0;i<120;i++){
+    const candidate=varyGraphSimilar(base);
+    const res=dijkstra(candidate.nodes,candidate.edges,candidate.start,candidate.end);
+    if(isDifficultySimilar(res,profile,l))return candidate;
+  }
+  return cloneGraph(base);
+}
 
 // ── DIJKSTRA ────────────────────────────────────────────────
 function dijkstra(nodes,edges,sId,eId){
   const dist={},prev={},vis=new Set(),adj={};
   nodes.forEach(n=>{dist[n.id]=Infinity;prev[n.id]=null;adj[n.id]=[];});
-  edges.forEach(([u,v,w])=>{adj[u].push({to:v,w});adj[v].push({to:u,w});});
+  edges.forEach(([u,v,w,t])=>{
+    const type=t||'bi';
+    adj[u].push({to:v,w});
+    if(type==='bi')adj[v].push({to:u,w});
+  });
   dist[sId]=0;
   while(true){
     let u=null,md=Infinity;
@@ -385,13 +521,14 @@ function resizeCanvas(){
 }
 function px(n){return{x:n.x*canvas.width,y:n.y*canvas.height};}
 
-// Draw a smooth arrowhead at the midpoint of an edge
-function drawArrowAt(x1,y1,x2,y2,color,sz){
+// Draw a smooth arrowhead at a custom position along edge
+function drawArrowAt(x1,y1,x2,y2,color,sz,ratio=.60){
   const angle=Math.atan2(y2-y1,x2-x1);
-  // position arrow 60% along the edge
-  const mx=x1+(x2-x1)*.60, my=y1+(y2-y1)*.60;
+  const mx=x1+(x2-x1)*ratio, my=y1+(y2-y1)*ratio;
   ctx.save();
   ctx.translate(mx,my); ctx.rotate(angle);
+  ctx.shadowColor='rgba(0,0,0,.34)';
+  ctx.shadowBlur=3;
   ctx.beginPath();
   ctx.moveTo(sz,0); ctx.lineTo(-sz,-sz*.55); ctx.lineTo(-sz*0.3,0); ctx.lineTo(-sz,sz*.55);
   ctx.closePath();
@@ -403,17 +540,34 @@ function getAdjacentToLast(){
   if(!playerPath.length) return new Set();
   const last=playerPath[playerPath.length-1];
   const adj=new Set();
-  graph.edges.forEach(([u,v])=>{
+  graph.edges.forEach(([u,v,,t])=>{
+    const type=t||'bi';
     if(u===last) adj.add(v);
-    if(v===last) adj.add(u);
+    if(type==='bi'&&v===last) adj.add(u);
   });
   return adj;
+}
+function getNodePoi(id,isStart,isEnd){
+  if(isStart)return {icon:'🚩',label:'Plaza inicio'};
+  if(isEnd)return {icon:'🏠',label:'Destino'};
+  const pool=[
+    {icon:'🏦',label:'Banco'},
+    {icon:'🏢',label:'Edificio'},
+    {icon:'🌳',label:'Plaza'},
+    {icon:'🛒',label:'Mercado'},
+    {icon:'🏥',label:'Clínica'},
+    {icon:'🏫',label:'Colegio'},
+    {icon:'🏛️',label:'Centro cívico'}
+  ];
+  let hash=0;
+  for(let i=0;i<id.length;i++)hash+=id.charCodeAt(i);
+  return pool[hash%pool.length];
 }
 
 function drawMap(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
-  // Grid
-  ctx.strokeStyle='#10192a'; ctx.lineWidth=.5;
+  // Grid (OSM-like light guides)
+  ctx.strokeStyle='rgba(140,150,160,.22)'; ctx.lineWidth=.5;
   for(let x=0;x<canvas.width;x+=40){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,canvas.height);ctx.stroke();}
   for(let y=0;y<canvas.height;y+=40){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(canvas.width,y);ctx.stroke();}
 
@@ -421,7 +575,7 @@ function drawMap(){
   const {start:sN,end:eN}=graph;
   const adjToLast=getAdjacentToLast();
 
-  // ── EDGES ──
+  // ── EDGES (carreteras) ──
   graph.edges.forEach(([u,v,w,type])=>{
     const a=px(nm[u]),b=px(nm[v]);
     const inP=isInPath(playerPath,u,v);
@@ -430,35 +584,54 @@ function drawMap(){
                       ((playerPath.includes(u)&&!playerPath.includes(v))||(playerPath.includes(v)&&!playerPath.includes(u)));
 
     let lineCol, arrowCol, lw;
-    if(inO)       {lineCol='#4caf50';arrowCol='#81c784';lw=3.5;}
-    else if(inP)  {lineCol='#1e88e5';arrowCol='#64b5f6';lw=3.5;}
-    else if(isReachable){lineCol='#1a3d6a';arrowCol='#4fc3f7';lw=2;}
-    else if(type==='uni'){lineCol='#1e3822';arrowCol='#3a7a3a';lw=1.5;}
-    else          {lineCol='#1a2d4a';arrowCol='#2a5a9f';lw=1.5;}
+    if(inO)       {lineCol='#2e7d32';arrowCol='#00c853';lw=4.3;}
+    else if(inP)  {lineCol='#1976d2';arrowCol='#00b0ff';lw=4.3;}
+    else if(isReachable){lineCol='#00838f';arrowCol='#00e5ff';lw=3.4;}
+    else if(type==='uni'){lineCol='#5f6368';arrowCol='#ff8f00';lw=3;}
+    else          {lineCol='#6c7075';arrowCol='#ffffff';lw=3;}
 
+    // asphalt base
+    ctx.strokeStyle='#4f5358';
+    ctx.lineWidth=lw+3.2;
+    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    // road body
     ctx.strokeStyle=lineCol; ctx.lineWidth=lw;
     ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    // center lane mark
+    ctx.save();
+    ctx.strokeStyle=(type==='uni')?'#ffd54f':'rgba(255,255,255,.72)';
+    ctx.setLineDash([8,6]);
+    ctx.lineWidth=1.2;
+    ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke();
+    ctx.restore();
 
-    // ARROWS — bigger and more visible
-    const arrowSz = lw>2 ? 9 : 8;
+    // ARROWS — extra visible and repeated
+    const arrowSz = lw>4 ? 12 : 11;
+    const directionMarks = type==='uni' ? [0.28,0.52,0.76] : [0.34,0.68];
     if(type==='uni'){
-      drawArrowAt(a.x,a.y,b.x,b.y,arrowCol,arrowSz);
+      directionMarks.forEach(ratio=>drawArrowAt(a.x,a.y,b.x,b.y,arrowCol,arrowSz,ratio));
     } else {
-      // bidireccional: two arrows
-      drawArrowAt(a.x,a.y,b.x,b.y,arrowCol,arrowSz);
-      drawArrowAt(b.x,b.y,a.x,a.y,arrowCol,arrowSz);
+      directionMarks.forEach(ratio=>{
+        drawArrowAt(a.x,a.y,b.x,b.y,arrowCol,arrowSz,ratio);
+        drawArrowAt(b.x,b.y,a.x,a.y,arrowCol,arrowSz,ratio);
+      });
     }
 
-    // Weight label background
+    // Weight label background (bigger for readability)
     const mx=(a.x+b.x)/2,my=(a.y+b.y)/2;
-    ctx.fillStyle=inO?'#0a1f0a':inP?'#0a1527':'#0a0f1a';
-    ctx.fillRect(mx-12,my-8,24,16);
-    ctx.fillStyle=inO?'#81c784':inP?'#64b5f6':'#fbc400';
-    ctx.font='bold 10px monospace'; ctx.textAlign='center'; ctx.textBaseline='middle';
+    const ww=String(w).length>=2?30:26;
+    const hh=22;
+    ctx.fillStyle=inO?'#d9f0dc':inP?'#d8e8f9':'#f5f2eb';
+    ctx.fillRect(mx-(ww/2),my-(hh/2),ww,hh);
+    ctx.strokeStyle='rgba(0,0,0,.22)';
+    ctx.lineWidth=1;
+    ctx.strokeRect(mx-(ww/2),my-(hh/2),ww,hh);
+    ctx.fillStyle=inO?'#2e7d32':inP?'#1565c0':'#b88600';
+    ctx.font='bold 14px monospace'; ctx.textAlign='center'; ctx.textBaseline='middle';
     ctx.fillText(w,mx,my);
   });
 
-  // ── NODES ──
+  // ── NODES (POIs) ──
   graph.nodes.forEach(n=>{
     const {x,y}=px(n);
     const isS=n.id===sN,isE=n.id===eN;
@@ -468,13 +641,14 @@ function drawMap(){
     const isAdj=(!confirmed)&&adjToLast.has(n.id)&&!playerPath.includes(n.id);
     const isHov=hoverNode===n.id;
 
-    let fill='#1a2d4a',stroke='#2a4d8a',r=14;
-    if(isS)       {fill='#1b5e20';stroke='#4caf50';r=18;}
-    else if(isE)  {fill='#5a4000';stroke='#fbc400';r=18;}
-    else if(inO&&confirmed){fill='#1b5e20';stroke='#4caf50';}
-    else if(isCur){fill='#0d3060';stroke='#42a5f5';r=17;}
-    else if(inP)  {fill='#1a2a5a';stroke='#2196f3';}
-    else if(isAdj){fill='#1a3a2a';stroke='#26a69a';}
+    const poi=getNodePoi(n.id,isS,isE);
+    let fill='#ffffff',stroke='#8a8f96',r=16;
+    if(isS)       {fill='#e8f5e9';stroke='#43a047';r=19;}
+    else if(isE)  {fill='#fff8e1';stroke='#fbc400';r=19;}
+    else if(inO&&confirmed){fill='#e8f5e9';stroke='#43a047';}
+    else if(isCur){fill='#e3f2fd';stroke='#1e88e5';r=18;}
+    else if(inP)  {fill='#eef5ff';stroke='#2196f3';}
+    else if(isAdj){fill='#e8f7f5';stroke='#26a69a';}
 
     // Glow halos
     if(isS||isE){
@@ -500,18 +674,21 @@ function drawMap(){
     ctx.fillStyle=fill; ctx.fill();
     ctx.strokeStyle=stroke; ctx.lineWidth=2.5; ctx.stroke();
 
-    ctx.fillStyle='#ffffff';
-    ctx.font=`bold ${n.id.length>1?8:11}px monospace`;
+    ctx.fillStyle='#1f2937';
+    ctx.font='16px "Segoe UI Emoji","Apple Color Emoji",sans-serif';
     ctx.textAlign='center'; ctx.textBaseline='middle';
-    ctx.fillText(n.id,x,y);
+    ctx.fillText(poi.icon,x,y-1);
+    ctx.fillStyle='#334155';
+    ctx.font='bold 9px sans-serif';
+    ctx.fillText(n.id,x,y+r+10);
 
     if(isS){
-      ctx.fillStyle='#4caf50'; ctx.font='bold 11px sans-serif';
-      ctx.fillText('⬤ INICIO',x,y+r+13);
+      ctx.fillStyle='#2e7d32'; ctx.font='bold 11px sans-serif';
+      ctx.fillText('INICIO',x,y+r+23);
     }
     if(isE){
-      ctx.fillStyle='#fbc400'; ctx.font='bold 11px sans-serif';
-      ctx.fillText('★ FINAL',x,y+r+13);
+      ctx.fillStyle='#b88600'; ctx.font='bold 11px sans-serif';
+      ctx.fillText('DESTINO',x,y+r+23);
     }
   });
 }
@@ -565,7 +742,11 @@ function handleNodeClick(id,nm){
   if(phase!=='routing')return;
   const last=playerPath[playerPath.length-1];
   if(id===last)return;
-  const edge=graph.edges.find(([u,v])=>(u===last&&v===id)||(u===id&&v===last));
+  const edge=graph.edges.find(([u,v,,t])=>{
+    const type=t||'bi';
+    if(u===last&&v===id)return true;
+    return type==='bi'&&u===id&&v===last;
+  });
   if(!edge){setMsg('No hay calle entre '+last+' y '+id,'error');return;}
   if(playerPath.includes(id)&&id!==eN){setMsg('Ya visitaste '+id+'. Usa ↩ Deshacer.','warn');return;}
   playerPath.push(id);
@@ -582,7 +763,11 @@ function undoStep(){
   if(playerPath.length<=1){setMsg('Ya estás en el nodo INICIO','warn');return;}
   const rem=playerPath.pop();
   const prev2=playerPath[playerPath.length-1];
-  const edge=graph.edges.find(([u,v])=>(u===prev2&&v===rem)||(u===rem&&v===prev2));
+  const edge=graph.edges.find(([u,v,,t])=>{
+    const type=t||'bi';
+    if(u===prev2&&v===rem)return true;
+    return type==='bi'&&u===rem&&v===prev2;
+  });
   if(edge)playerDist=Math.max(0,playerDist-edge[2]);
   phase='routing';
   moveTrufi(prev2);
@@ -713,6 +898,65 @@ function saveCurrentPlayer(){
   upsertPlayer(player.name,player.phone,currentScore,0,difficulty);
   showToast('💾 Jugador guardado!');
 }
+function exportPlayersJSON(){
+  const players=loadPlayers();
+  const payload=playersCachePayload(players);
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  const stamp=new Date().toISOString().slice(0,19).replace(/[:T]/g,'-');
+  a.href=url;
+  a.download='trufi-players-cache-'+stamp+'.json';
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  URL.revokeObjectURL(url);
+  showToast('JSON exportado ('+players.length+' jugadores)');
+}
+function triggerImportPlayers(){
+  const input=document.getElementById('players-json-file');
+  if(!input)return;
+  input.value='';
+  input.click();
+}
+function mergePlayersFromCache(raw){
+  const incoming=(raw&&Array.isArray(raw.players))?raw.players:[];
+  if(!incoming.length)return 0;
+  const merged=loadPlayers();
+  let addedOrUpdated=0;
+  incoming.forEach(p=>{
+    if(!p||!p.phone)return;
+    const i=merged.findIndex(x=>x.phone===p.phone);
+    if(i>=0){
+      const prev=merged[i];
+      const next={
+        ...prev,
+        name:p.name||prev.name,
+        phone:prev.phone,
+        bestScore:Math.max(Number(prev.bestScore)||0,Number(p.bestScore)||0),
+        gamesPlayed:Math.max(Number(prev.gamesPlayed)||0,Number(p.gamesPlayed)||0),
+        maxLevel:Math.max(Number(prev.maxLevel)||1,Number(p.maxLevel)||1),
+        lastSeen:Math.max(Number(prev.lastSeen)||0,Number(p.lastSeen)||0)
+      };
+      const changed=JSON.stringify(prev)!==JSON.stringify(next);
+      merged[i]=next;
+      if(changed)addedOrUpdated++;
+    }else{
+      merged.push({
+        name:p.name||'Jugador',
+        phone:String(p.phone),
+        bestScore:Number(p.bestScore)||0,
+        gamesPlayed:Number(p.gamesPlayed)||0,
+        maxLevel:Number(p.maxLevel)||1,
+        lastSeen:Number(p.lastSeen)||Date.now()
+      });
+      addedOrUpdated++;
+    }
+  });
+  merged.sort((a,b)=>b.bestScore-a.bestScore);
+  savePlayers(merged);
+  return addedOrUpdated;
+}
 function backToLogin(){
   stopTimer();
   upsertPlayer(player.name,player.phone,currentScore,0,difficulty);
@@ -723,7 +967,7 @@ function backToLogin(){
 
 // ── STICKER ───────────────────────────────────────────────────
 function showSticker(ok){
-  document.getElementById('sticker-img').src=ok?S1_SRC:S2_SRC;
+  document.getElementById('sticker-img').src=ok?ROUTE_FOUND_SRC:S2_SRC;
   document.getElementById('sticker-overlay').style.display='flex';
   setTimeout(()=>document.getElementById('sticker-overlay').style.display='none',3500);
 }
@@ -743,7 +987,7 @@ function toggleLB(){
   const records=loadPlayers().slice(0,12);
   document.getElementById('lb-content').innerHTML=records.length
     ? records.map((r,i)=>`<div class="lb-row"><span class="lb-rank">${i+1}</span><span class="lb-name">${r.name}</span><span class="lb-meta">Nv${r.maxLevel||1} · ${r.gamesPlayed||0}p</span><span class="lb-score">${r.bestScore}</span></div>`).join('')
-    : '<div style="color:#5a7a9a;font-size:12px;">Sin registros</div>';
+    : '<div style="color:var(--trufi-muted);font-size:12px;">Sin registros</div>';
   p.style.display='block';
 }
 
@@ -793,6 +1037,22 @@ function doLogin(){
   setMsg('Haz clic en ⬤ INICIO ('+graph.start+') para comenzar','info');
   startTimer();
 }
+document.getElementById('players-json-file').addEventListener('change',e=>{
+  const file=e.target.files&&e.target.files[0];
+  if(!file)return;
+  const reader=new FileReader();
+  reader.onload=evt=>{
+    try{
+      const parsed=JSON.parse(String(evt.target.result||'{}'));
+      const affected=mergePlayersFromCache(parsed);
+      renderSavedPlayers();
+      showToast('Importación lista: '+affected+' registros');
+    }catch(err){
+      showToast('JSON inválido');
+    }
+  };
+  reader.readAsText(file);
+});
 window.addEventListener('resize',resizeCanvas);
 renderSavedPlayers();
 </script>
